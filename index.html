@@ -23,7 +23,7 @@
         <i class="fas fa-exchange-alt"></i>
 
         <select class="secondcurrency">
-            <option value="NGNSSS">Naira</option>
+            <option value="NGN">Naira</option>
             <option value="USD">Dollar</option>
             <option value="EUR">Euro</option>
         </select>
@@ -32,30 +32,10 @@
 
 
         <p class="result">0</p>
-    </div>
+    </div>.
 
-    <script>
-        let key = "21a3d050-7929-11ec-a125-d526f855eaa6";
-        let convertBtn = document.querySelector(".convertBtn")
-        let firstCurrency = document.querySelector(".firstcurrency")
-        let result = document.querySelector(".result")
-
-        convertBtn.addEventListener("click", function(){
-            let base = firstCurrency.value;
-            let api = `https://freecurrencyapi.net/api/v2/latest?apikey=${key}&base_currency=${base}`
-
-            fetch(api).then(function (res){
-                
-                return res.json()
-            }).then((mdata)=>{
-                console.log(mdata);
-                let secondcurrency = document.querySelector(".secondcurrency")
-                let sCurrency = secondcurrency.value;
-                result.textContent = mdata.data[sCurrency];
-            }).catch((err) => {
-                console.log(err.message);
-            })
-        })
+    <script src="converter.js">
+        
     </script>
 </body>
 </html>
