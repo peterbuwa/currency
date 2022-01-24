@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        h1 {text-transform:capitalize}
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>currency converter</h1>
+        <select class="firstcurrency">
+            <option value="NGN">Naira</option>
+            <option value="USD">Dollar</option>
+            <option value="EUR">Euro</option>
+        </select>
+
+        <i class="fas fa-exchange-alt"></i>
+
+        <select class="secondcurrency">
+            <option value="NGNSSS">Naira</option>
+            <option value="USD">Dollar</option>
+            <option value="EUR">Euro</option>
+        </select>
+
+        <input type="button" class="convertBtn" value="convert">
+
+
+        <p class="result">0</p>
+    </div>
+
+    <script>
+        let key = "21a3d050-7929-11ec-a125-d526f855eaa6";
+        let convertBtn = document.querySelector(".convertBtn")
+        let firstCurrency = document.querySelector(".firstcurrency")
+        let result = document.querySelector(".result")
+
+        convertBtn.addEventListener("click", function(){
+            let base = firstCurrency.value;
+            let api = `https://freecurrencyapi.net/api/v2/latest?apikey=${key}&base_currency=${base}`
+
+            fetch(api).then(function (res){
+                
+                return res.json()
+            }).then((mdata)=>{
+                console.log(mdata);
+                let secondcurrency = document.querySelector(".secondcurrency")
+                let sCurrency = secondcurrency.value;
+                result.textContent = mdata.data[sCurrency];
+            }).catch((err) => {
+                console.log(err.message);
+            })
+        })
+    </script>
+</body>
+</html>
